@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: studentModule
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/student/**
+          filters:
+            - CustomFilter
+        - id: subjectModule
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/subject/**
+          filters:
+            - CustomFilter
